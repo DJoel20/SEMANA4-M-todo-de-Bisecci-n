@@ -1,0 +1,22 @@
+def f(x):
+    return x**3 - 7*x**2 + 14*x - 6
+
+def biseccion(a, b, tolerancia):
+    while (b - a) / 2 > tolerancia:
+        c = (a + b) / 2
+        if f(c) == 0:
+            return c
+        elif f(a) * f(c) < 0:
+            b = c
+        else:
+            a = c
+    return (a + b) / 2
+
+# Intervalos dados:
+intervalos = [(0, 1), (1.32, 2), (3.2, 4)]
+tolerancia = 1e-5
+
+# Aplicar el método de bisección a cada intervalo
+for a, b in intervalos:
+    raiz = biseccion(a, b, tolerancia)
+    print(f"La raíz en el intervalo [{a}, {b}] es aproximadamente: {raiz}")
