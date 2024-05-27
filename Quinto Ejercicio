@@ -1,0 +1,18 @@
+def f(x):
+    return (x**3 + 3*x**2 + 3*x + 1) / (x - 1)
+
+intervalos = [(-5, 2.5), (-0.5, 2), (0, 5.3), (3, -9.5)]
+tolerancia = 1e-5
+
+for a, b in intervalos:
+    while (b - a) / 2 > tolerancia:
+        c = (a + b) / 2
+        if f(c) == 0:
+            raiz = c
+            break
+        elif f(a) * f(c) < 0:
+            b = c
+        else:
+            a = c
+    raiz = (a + b) / 2
+    print(f"La raíz en el intervalo [{a}, {b}] es aproximadamente: {raiz}")
