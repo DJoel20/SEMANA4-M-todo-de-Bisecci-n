@@ -1,0 +1,29 @@
+import math
+
+def V(h, L, r):
+    return L * (0.5 * math.pi * r**2 - r**2 * math.acos(h/r) - h * (r**2 - h**2)**0.5)
+
+# Valores dados
+L = 10  # cm
+r = 1   # cm
+V_objetivo = 12.4  # cm^3
+
+# Intervalos para h
+a = 0  # cm
+b = 2 * r  # cm, ya que es un semicírculo
+tolerancia = 0.01  # cm
+
+# Método de bisección
+while (b - a) / 2 > tolerancia:
+    c = (a + b) / 2
+    V_calculado = V(c, L, r)
+    if abs(V_calculado - V_objetivo) < tolerancia:
+        profundidad = c
+        break
+    elif V_calculado < V_objetivo:
+        a = c
+    else:
+        b = c
+
+profundidad = (a + b) / 2
+print(f"La profundidad del agua es aproximadamente: {profundidad} cm")
