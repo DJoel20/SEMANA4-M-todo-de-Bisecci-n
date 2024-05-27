@@ -1,0 +1,25 @@
+def f(x):
+    return x**3 - x - 1
+
+def biseccion(a, b, tolerancia):
+    n = 0
+    while (b - a) / 2 > tolerancia:
+        c = (a + b) / 2
+        if f(c) == 0:
+            return c, n
+        elif f(a) * f(c) < 0:
+            b = c
+        else:
+            a = c
+        n += 1
+    return (a + b) / 2, n
+
+# Intervalo y tolerancia dados
+a = 1
+b = 2
+tolerancia = 1e-4
+
+# Aplicar el método de bisección
+raiz, iteraciones = biseccion(a, b, tolerancia)
+print(f"La raíz aproximada es: {raiz}")
+print(f"El número de iteraciones fue: {iteraciones}")
