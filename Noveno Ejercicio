@@ -1,0 +1,24 @@
+import math
+
+def f(x):
+    return math.sin(x) - x
+
+def biseccion(a, b, tolerancia):
+    while (b - a) / 2 > tolerancia:
+        c = (a + b) / 2
+        if f(c) == 0:
+            return c
+        elif f(a) * f(c) < 0:
+            b = c
+        else:
+            a = c
+    return (a + b) / 2
+
+# Valores iniciales y tolerancia
+a = -1  # dado que -1 < a < 0
+b = 1   # dado que 0 < b < 1
+tolerancia = 1e-5
+
+# Aplicar el método de bisección
+raiz = biseccion(a, b, tolerancia)
+print(f"La raíz aproximada es: {raiz}")
