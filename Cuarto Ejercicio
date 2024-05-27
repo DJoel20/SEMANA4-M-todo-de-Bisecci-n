@@ -1,0 +1,22 @@
+def r(x):
+    return -x**2 + 3 - x
+
+def biseccion(a, b, tolerancia):
+    while (b - a) / 2 > tolerancia:
+        c = (a + b) / 2
+        if r(c) == 0:
+            return c
+        elif r(a) * r(c) < 0:
+            b = c
+        else:
+            a = c
+    return (a + b) / 2
+
+# Intervalo y tolerancia dados:
+a = 0
+b = 2  # Intervalo dado x_0 = 2, x_1 = 0
+tolerancia = 1e-2
+
+# Aplicar el método de bisección
+solucion = biseccion(a, b, tolerancia)
+print(f"La solución aproximada es: {solucion}")
