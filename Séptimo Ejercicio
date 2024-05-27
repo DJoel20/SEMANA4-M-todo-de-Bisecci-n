@@ -1,0 +1,27 @@
+def s(t, m, g, k, S_0):
+    return S_0 - (m*g/k)*t + (m**2*g/k**2)*(1 - math.exp(-k*t/m))
+
+# Valores dados
+m = 0.25  # kg
+g = 9.81  # m/s^2
+k = 0.1   # Ns/m
+S_0 = 300 # m
+
+# Intervalos para t
+a = 0  # s
+b = S_0 / (m*g/k)  # s, tiempo máximo estimado
+tolerancia = 0.01  # s
+
+# Método de bisección
+while (b - a) / 2 > tolerancia:
+    c = (a + b) / 2
+    if s(c, m, g, k, S_0) < tolerancia:
+        tiempo = c
+        break
+    elif s(c, m, g, k, S_0) < 0:
+        b = c
+    else:
+        a = c
+
+tiempo = (a + b) / 2
+print(f"El tiempo exacto en que el objeto golpea el piso es aproximadamente: {tiempo} segundos")
